@@ -4,6 +4,9 @@ Macie can help you classify your sensitive and business\-critical data stored in
 
 Once you specify the S3 bucket\(s\) for Macie to monitor, you enable Macie to continuously monitor and discover new data as it enters your AWS infrastructure\. For more information on how to specify S3 buckets for Macie to monitor, see [Specify Data for Macie to Monitor](macie-integration.md#macie-integration-services)\.
 
+**Note**  
+Macie's content classification engine processes up to the first 20 MB of an S3 object\. For more information, see [Specify Data for Macie to Monitor](macie-integration.md#macie-integration-services)\.
+
 
 + [Classify data with Macie](#classify-objects)
 + [Object Risk Level](#compound-score)
@@ -40,7 +43,7 @@ To classify your data objects by a content type, Macie uses an identifier that i
 
 Macie can assign only one content type to an object\.
 
-You cannot modify existing or add new content types\. You can enable or disable the existing content types, thus instructing Macie to either include or exclude them in its data classification process\.
+You cannot modify existing or add new content types\. You can enable or disable the existing content types, thus instructing Macie to either include or exclude them in its data classification process\.<a name="enable-disable-content-types"></a>
 
 **To view, enable, or disable content types**
 
@@ -58,7 +61,7 @@ Macie can also classify your objects by their file extensions\. Macie offers a s
 
 Macie can assign only one file extension to an object\.
 
-You cannot modify existing or add new file extensions\. You can enable or disable the existing file extensions, thus instructing Macie to either include or exclude them in its data classification process\.
+You cannot modify existing or add new file extensions\. You can enable or disable the existing file extensions, thus instructing Macie to either include or exclude them in its data classification process\.<a name="enable-disable-file-extensions"></a>
 
 **To view, enable, or disable file extensions**
 
@@ -76,7 +79,7 @@ Object classification by theme is based on keywords that Macie searches for as i
 
 Macie can assign one or more themes to an object\.
 
-You cannot modify existing or add new themes\. You can enable or disable the existing themes, thus instructing Macie to either include or exclude them in its data classification process\.
+You cannot modify existing or add new themes\. You can enable or disable the existing themes, thus instructing Macie to either include or exclude them in its data classification process\.<a name="enable-disable-themes"></a>
 
 **To view, enable, or disable themes**
 
@@ -94,7 +97,7 @@ Object classification by regex is based on specific data or data patterns that M
 
 Macie can assign one or more regex to an object\.
 
-You cannot modify existing or add new regex\. You can enable or disable the existing regex, thus instructing Macie to either include or exclude them in its data classification process\.
+You cannot modify existing or add new regex\. You can enable or disable the existing regex, thus instructing Macie to either include or exclude them in its data classification process\.<a name="enable-disable-regex"></a>
 
 **To view, enable, or disable regex**
 

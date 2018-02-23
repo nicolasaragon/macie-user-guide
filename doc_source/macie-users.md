@@ -30,69 +30,13 @@ The examples below list various structures of macieUniqueId, depending on the us
 
 | userIdentity | MacieUniqueId | 
 | --- | --- | 
-|  
-
-```
-"userIdentity": {
-    "type": "AssumedRole"
-    "arn": "arn:aws:sts::123456789012:assumed-role/Accounting-Role/Mary"
-}
-```  |  123456789012:assumed\-role/accounting\-role  | 
-|  
-
-```
-"userIdentity": {
-    "type": "IAMUser",
-    "arn": "arn:aws:iam::123456789012:user/Bob",
-    "userName": "Bob"
-}
-```  |  123456789012:user:bob  | 
-|  
-
-```
-"userIdentity": {
-    "type": "FederatedUser"
-    "arn": "arn:aws:sts::123456789012:federated-user/Alice",
-    "principalId": "123456789012:Alice",
-}
-```  |  123456789012:federated\-user:alice  | 
-|  
-
-```
-"recipientAccountId": "123456789012",
-"userIdentity": {
-    "type": "AWSAccount"
-    "accountId": "ANONYMOUS_PRINCIPAL",
-}
-```  |  123456789012:ANONYMOUS\_PRINCIPAL   | 
-|  
-
-```
-"macieUniqueId": "123456789012:root:root",
-"userIdentity": {
-    "type": "Root"
-    "sourceARN": "arn:aws:iam::123456789012:root",
-}
-```  |  123456789012:root:root  | 
-|  
-
-```
-"userIdentity": {
-    "invokedBy": "codepipeline.amazonaws.com",
-    "type": "AWSService"
-}
-"recipientAccountId": "123456789012",
-```  |  123456789012:codepipeline\.amazonaws\.com   | 
-|  
-
-```
-"recipientAccoundId": "123456789012",
-"userIdentity": {
-    "type": "AWSAccount"
-    "accountId": "987654321098",
-    "principalId": "AIDABCDEFGHI123456XYZ",
-}
-```  |  123456789012:AIDABCDEFGHI123456XYZ  | 
+|  <pre>"userIdentity": {<br />    "type": "AssumedRole"<br />    "arn": "arn:aws:sts::123456789012:assumed-role/Accounting-Role/Mary"<br />}<br /></pre>  |  123456789012:assumed\-role/accounting\-role  | 
+|  <pre>"userIdentity": {<br />    "type": "IAMUser",<br />    "arn": "arn:aws:iam::123456789012:user/Bob",<br />    "userName": "Bob"<br />}<br /></pre>  |  123456789012:user:bob  | 
+|  <pre>"userIdentity": {<br />    "type": "FederatedUser"<br />    "arn": "arn:aws:sts::123456789012:federated-user/Alice",<br />    "principalId": "123456789012:Alice",<br />}<br /></pre>  |  123456789012:federated\-user:alice  | 
+|  <pre>"recipientAccountId": "123456789012",<br />"userIdentity": {<br />    "type": "AWSAccount"<br />    "accountId": "ANONYMOUS_PRINCIPAL",<br />}<br /></pre>  |  123456789012:ANONYMOUS\_PRINCIPAL   | 
+|  <pre>"macieUniqueId": "123456789012:root:root",<br />"userIdentity": {<br />    "type": "Root"<br />    "sourceARN": "arn:aws:iam::123456789012:root",<br />}<br /></pre>  |  123456789012:root:root  | 
+|  <pre>"userIdentity": {<br />    "invokedBy": "codepipeline.amazonaws.com",<br />    "type": "AWSService"<br />}<br />"recipientAccountId": "123456789012",<br /></pre>  |  123456789012:codepipeline\.amazonaws\.com   | 
+|  <pre>"recipientAccoundId": "123456789012",<br />"userIdentity": {<br />    "type": "AWSAccount"<br />    "accountId": "987654321098",<br />    "principalId": "AIDABCDEFGHI123456XYZ",<br />}<br /></pre>  |  123456789012:AIDABCDEFGHI123456XYZ  | 
 
 ## User Categories in Macie<a name="macie-users-categories"></a>
 
@@ -116,17 +60,17 @@ When specifying a user, you must use a special Macie format called **macieUnique
 
 1. When the user data is generated, choose the corresponding icon to select any of the following views to display various subsets of this user's Macie\-monitored data and activity:
 
-   + High\-risk CloudTrail events
+   + [High\-risk CloudTrail events](#user-high-risk-events)
 
-   + High\-risk CloudTrail errors
+   + [High\-risk CloudTrail errors](#user-high-risk-errors)
 
-   + Activity location
+   + [Activity location](#user-activity-location)
 
-   + CloudTrail events
+   + [CloudTrail events](#user-cloudtrail-events)
 
-   + Activity ISPs
+   + [Activity ISPs](#user-activity-isp)
 
-   + CloudTrail user identity types
+   + [CloudTrail user identity types](#user-cloudtrail-user-identity-type)
 
 1. If present in the selected view, locate and move the **Minimum risk** slider to the desired value\. The **Minimum risk** slider enables you to only view items with the assigned risk equal to and greater than the selected value\. 
 

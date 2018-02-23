@@ -144,7 +144,7 @@ You can use the following procedure to add new and edit existing custom basic al
 **Note**  
 You can use the looking glass icon next to an existing alert to navigate to the **Research** tab\. This alert's query is then automatically displayed in the **Query Parser** and the results of this query are displayed in the **Research** tab\. 
 
-     + Query index \- this is the repository of data against which Macie will run the query specified in this alert\. You can select either data, S3 buckets, or S3 objects\. Depending on your selection, the alert will contain either a list of cloud trail user sessions \(5\-minute aggregates of raw CloudTrail data\), a list of S3 buckets, or a list of S3 objects that match the activity that your alert defines\.
+     + Query index \- this is the repository of data against which Macie will run the query specified in this alert\. You can select either CloudTrail data, S3 buckets, or S3 objects\. Depending on your selection, the alert will contain either a list of cloud trail user sessions \(5\-minute aggregates of raw CloudTrail data\), a list of S3 buckets, or a list of S3 objects that match the activity that your alert defines\.
 
      + A minimum number of activity matches that must occur before an alert is generated\.
 

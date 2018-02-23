@@ -6,39 +6,39 @@ The Macie **Dashboard** draws a comprehensive picture of all of your Macie\-moni
 
 The following **Dashboard** metrics allow you to view your monitored data grouped by several key interest points:
 
-+ **High\-risk S3 objects** \- While classifying data, Macie assigns a risk value to each monitored data object\. This is Macie's way of helping you identify and prioritize your sensitive data over other, less business\-critical data\. This metric allows you to see all of your Macie\-monitored data objects with a risk levels of 8 through 10\.
++ **High\-risk S3 objects** \- While [classifying data](macie-classify-data.md), Macie assigns a risk value to each monitored data object\. This is Macie's way of helping you identify and prioritize your sensitive data over other, less business\-critical data\. This metric allows you to see all of your Macie\-monitored data objects with a risk levels of 8 through 10\.
 
-+ **Total event occurrences** \- As part of securing data, Macie analyzes and processes CloudTrail\-logged events \(API calls\) that occur within your infrastructure\. This metric provides the total count of all Macie\-monitored event occurrences that took place within your infrastructure since you enabled Macie\.
++ **Total event occurrences** \- As part of [securing data](macie-protect-data.md), Macie analyzes and processes CloudTrail\-logged events \(API calls\) that occur within your infrastructure\. This metric provides the total count of all Macie\-monitored event occurrences that took place within your infrastructure since you enabled Macie\.
 
 + **Total user sessions** \- A user session is a 5\-minute aggregate of CloudTrail data\. This metric provides the total count of all user sessions of CloudTrail data that Macie analyzed and processed since it was enabled\. 
 
 ## Dashboard Views<a name="dashboard-views"></a>
 
-Follow this procedure to use the predefined Macie **Dashboard** views and generate distinct subsets of your Macie\-monitored data and activity:
+Follow this procedure to use the predefined Macie **Dashboard** views and generate distinct subsets of your Macie\-monitored data and activity:<a name="procedure-dashboard-views"></a>
 
 **To use Macie Dashboard views**
 
 1. Choose the corresponding icon to select any of the following views to display various subsets of your Macie\-monitored data and activity:
 
-   + S3 objects for a selected time range
+   + [S3 objects for a selected time range](#s3objectsovertimerange)
 
-   + S3 objects
+   + [S3 objects](#s3objects)
 
-   + S3 objects by PII
+   + [S3 objects by PII](#s3objectspii)
 
-   + S3 objects by ACL
+   + [S3 objects by ACL](#s3objectsacl)
 
-   + CloudTrail events and associated users
+   + [CloudTrail events and associated users](#cloudtraileventsusers)
 
-   + CloudTrail errors and associated users
+   + [CloudTrail errors and associated users](#cloudtrailerrorsusers)
 
-   + Activity location
+   + [Activity location](#activitylocation)
 
-   + AWS CloudTrail events
+   + [AWS CloudTrail events](#cloudtrailevents)
 
-   + Activity ISPs
+   + [Activity ISPs](#activityisp)
 
-   + AWS CloudTrail user identity types
+   + [AWS CloudTrail user identity types](#cloudtrailuseridentitytype)
 
 1. If present in the selected view, locate and move the **Minimum risk** slider to the desired value\. The **Minimum risk** slider enables you to only view items with the assigned risk equal to and greater than the selected value\. 
 
@@ -58,7 +58,7 @@ This view provides a visual representation of your monitored S3 objects that mat
 
 To navigate from this view to the **Research** tab, you can select \(double\-click\) any of the squares that represent the displayed time ranges or themes\. Your selection is automatically translated into a query that is displayed in the query parser in the **Research** tab\.
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d1"></a>
 
 1. In the Macie **Dashboard**, select the **S3 objects over selected time range** view\.
 
@@ -78,7 +78,7 @@ This view provides the complete list of your Macie\-monitored S3 objects, groupe
 
 To navigate from this view to the **Research** tab, you can choose the looking glass icon next to any of the displayed themes\. Your selection is automatically translated into a query that is displayed in the query parser in the **Research** tab\.
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d2"></a>
 
 1. In the Macie **Dashboard**, select the **S3 objects** view\.
 
@@ -106,7 +106,7 @@ For more information about PII\-based object classification, see [Classify Your 
 
 To navigate from this view to the **Research** tab, you can choose the looking glass icon next to any of the displayed PII impacts or PII types\. Your selection is automatically translated into a query that is displayed in the query parser in the **Research** tab\. 
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d3"></a>
 
 1. In the Macie **Dashboard**, select the **S3 objects by PII** view\.
 
@@ -136,7 +136,7 @@ This view provides the following lists:
 
 To navigate from this view to the **Research** tab, you can choose the looking glass icon next to any of the displayed URIs, ACL display names, and ACL permissions\. Your selection is automatically translated into a query that is displayed in the query parser in the **Research** tab\. 
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d4"></a>
 
 1. In the Macie **Dashboard**, select the **S3 objects by ACL** view\.
 
@@ -164,7 +164,7 @@ This view provides the following lists:
 
   To navigate from this view to the **Research** tab, you can select \(double\-click\) any square that represents a particular error that you would like to investigate further\.The number in parenthesis next to the user name represents the number of user sessions \(5\-minute aggregates of CloudTrail data\) with which this user is associated\. In the **Research** tab, your selection is automatically translated into a query that is displayed in the query parser\.
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d5"></a>
 
 1. In the Macie **Dashboard**, select the **CloudTrail events and associated users** view\.
 
@@ -194,7 +194,7 @@ This view provides the following lists:
 
   To navigate from this view to the **Research** tab, you can select \(double\-click\) any square that represents a particular error that you would like to investigate further\. The number in parenthesis next to the user name represents the number of user sessions \(5\-minute aggregates of CloudTrail data\) with which this user is associated\. In the **Research** tab, your selection is automatically translated into a query that is displayed in the query parser\.
 
-You can follow this sample procedure:
+You can follow this sample procedure:<a name="d6"></a>
 
 1. In the Macie **Dashboard**, select the **CloudTrail errors and associated users** view\.
 
