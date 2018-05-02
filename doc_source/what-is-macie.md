@@ -12,33 +12,21 @@ US West \(Oregon\)
 ### Data Discovery and Classification<a name="data-discovery"></a>
 
 Amazon Macie enables you to identify business\-critical data and analyze access patterns and user behavior:
-
 + Continuously monitor new data in your AWS environment
-
 + Use artificial intelligence to understand access patterns of historical data
-
 + Automatically access user activity, applications, and service accounts
-
 + Use natural language processing \(NLP\) methods to understand data
-
 + Intelligently and accurately assign business value to data and prioritize business\-critical data based on your unique organization
-
 + Create your own security alerts and custom policy definitions
 
 ### Data Security<a name="data-security"></a>
 
 Amazon Macie enables you to be proactive with security compliance and achieve preventive security:
-
 + Identify and protect various data types, including PII, PHI, regulatory documents, API keys, and secret keys
-
 + Verify compliance with automated logs that allow for instant auditing
-
 + Identify changes to policies and access control lists
-
 + Observe changes in user behavior and receive actionable alerts
-
 + Receive notifications when data and account credentials leave protected zones
-
 + Detect when large quantities of business\-critical documents are shared internally and externally
 
 ## Pricing for Macie<a name="macie-pricing"></a>

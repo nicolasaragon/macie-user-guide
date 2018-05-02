@@ -26,9 +26,6 @@ In order for the master account users to be able to use the Macie console, they 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. Managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\.
 
 The following AWS managed policies, which you can attach to users in your account, are specific to Macie:
-
 + **AmazonMacieFullAccess** \- Provides full access to Macie\. 
-
 + **AmazonMacieSetupRole** \- Provides Macie with access to your AWS account\. 
-
 + **AmazonMacieServiceRole** \- Grants Macie read\-only access to resource dependencies in your account in order to enable data analysis\. 

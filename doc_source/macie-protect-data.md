@@ -1,6 +1,6 @@
-# Protect Your Data with Macie<a name="macie-protect-data"></a>
+# Protecting Data with Amazon Macie<a name="macie-protect-data"></a>
 
-
+**Topics**
 + [CloudTrail events](#cloud-trail-events)
 + [CloudTrail errors](#cloud-trail-errors)
 

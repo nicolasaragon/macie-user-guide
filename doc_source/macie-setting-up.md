@@ -1,6 +1,6 @@
 # Setting Up Amazon Macie<a name="macie-setting-up"></a>
 
-
+**Topics**
 + [Step 1 \- Enable Macie](#macie-setting-up-enable)
 + [Step 2 \- Integrate Amazon S3 with Macie](#macie-integrates3)
 
@@ -32,9 +32,7 @@ On the **Enable Amazon Macie** page, complete the following steps:
 The region that you are currently signed in to is automatically selected\.
 
 1. **Required:** create the Identity Access Management \(IAM\) roles that provide Macie with access to your AWS account\. You can create these roles and the required policies by launching the AWS CloudFormation stack templates found at the URLs listed below\. These roles only need to be created once for use in all regions\. For more information about AWS CloudFormation and CloudFormation stacks, see [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) and [Working with Stacks](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\. 
-
    + For US East \(Virginia\): [Macie CloudFormation template for a master account](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=MacieServiceRolesMaster&templateURL=https://s3.amazonaws.com/us-east-1.macie-redirection/cfntemplates/MacieServiceRolesMaster.template) 
-
    + US West \(Oregon\): [Macie CloudFormation template for a master account](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=MacieServiceRolesMaster&templateURL=https://s3-us-west-2.amazonaws.com/us-west-2.macie-redirection/cfntemplates/MacieServiceRolesMaster.template)
 
 1. **Required**: make sure that AWS CloudTrail is enabled in your account\. If CloudTrail is not enabled, you must navigate to the AWS CloudTrail console and enable AWS CloudTrail\. For more information, see [Overview for Creating a Trail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html)\.
@@ -45,7 +43,7 @@ The region that you are currently signed in to is automatically selected\.
 
 ## Step 2 \- Integrate Amazon S3 with Macie<a name="macie-integrates3"></a>
 
-To classify and protect your data, Macie analyzes and processes information from AWS CloudTrail and Amazon S3\. Enabling CloudTrail in your account is required in order to enable Macie\. Integrating S3 with Macie \(in other words, initially specifying one or more S3 buckets for Macie to monitor\) is not required in order to enable Macie\. However we strongly recommend that you integrate with S3 as part of setting up Macie and specify at least one S3 bucket that contains objects that you want Macie to classify and monitor\. For more information and details about how Macie classifies your data, see [Classify Your Data with Macie](macie-classify-data.md)\.
+To classify and protect your data, Macie analyzes and processes information from AWS CloudTrail and Amazon S3\. Enabling CloudTrail in your account is required in order to enable Macie\. Integrating S3 with Macie \(in other words, initially specifying one or more S3 buckets for Macie to monitor\) is not required in order to enable Macie\. However we strongly recommend that you integrate with S3 as part of setting up Macie and specify at least one S3 bucket that contains objects that you want Macie to classify and monitor\. For more information and details about how Macie classifies your data, see [Classifying Data with Amazon Macie](macie-classify-data.md)\.
 
 When you integrate with S3, Macie creates a trail and a bucket to store the logs about the S3 object\-level API activity \(data events\) that it will now analyze along with other CloudTrail logs that it processes\. 
 
@@ -56,11 +54,11 @@ You can use the following procedure to integrate with S3 as part of setting up M
 
 1. Log in to AWS with the credentials of the AWS account that is serving as your Macie master account\.
 
-1. Navigate to the Macie console's **Integrations** tab and choose the **Services** tab\. 
+1. In the Macie console's **Integrations** tab, choose the **Services** tab\. 
 
 1. In the **Services** tab, select the account id \(master or member\) in the **Select an account** drop\-down\. The **Amazon S3** tile is then displayed\.
 
-1. Choose the **Add** button in the **Amazon S3** tile\.
+1. Choose the **Details** button in the **Amazon S3** tile\.
 
 1. On the **Selected S3 buckets and prefixes** page, choose the edit icon, and then select either the full buckets \(recommended\) or bucket/prefix combinations for Macie to monitor\. You can select up to 250 S3 buckets and prefixes\. 
 **Note**  

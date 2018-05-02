@@ -1,13 +1,15 @@
-# Classify Your Data with Macie<a name="macie-classify-data"></a>
+# Classifying Data with Amazon Macie<a name="macie-classify-data"></a>
 
 Macie can help you classify your sensitive and business\-critical data stored in the cloud\. Currently, Macie analyzes and processes data stored in AWS S3 buckets\. To classify your data, Macie also uses CloudTrail's ability to capture object\-level API activity on S3 objects \(data events\)\. However, Macie only monitors CloudTrail data events if you specify at least one S3 bucket for Macie to monitor\. 
 
 Once you specify the S3 bucket\(s\) for Macie to monitor, you enable Macie to continuously monitor and discover new data as it enters your AWS infrastructure\. For more information on how to specify S3 buckets for Macie to monitor, see [Specify Data for Macie to Monitor](macie-integration.md#macie-integration-services)\.
 
 **Note**  
-Macie's content classification engine processes up to the first 20 MB of an S3 object\. For more information, see [Specify Data for Macie to Monitor](macie-integration.md#macie-integration-services)\.
+Macie's content classification engine processes up to the first 20 MB of an S3 object\. 
 
+If you specify S3 buckets that include files of a format that is not supported in Macie, then Macie does not classify them and your Macie usage charges do not include any costs for this content\. Your Macie usage charges include only the costs for the content that Macie processes\. For example, Macie cannot extract text from \.wav files \(images or movies\), therefore it doesn’t process that content and you’re not charged for it\.
 
+**Topics**
 + [Classify data with Macie](#classify-objects)
 + [Object Risk Level](#compound-score)
 + [Retention Duration for S3 Metadata](#metadata-retention-duration)
@@ -112,39 +114,23 @@ You cannot modify existing or add new regex\. You can enable or disable the exis
 ### Personally Identifiable Information \(PII\)<a name="classify-objects-pii"></a>
 
 Object classification by PII is based on recognizing any personally identifiable artifacts based on industry standards such as NIST\-80\-122 and FIPS 199\. Macie is able to recognize the following PII artifacts: 
-
 + Full names
-
 + Mailing addresses
-
 + Email addresses
-
 + Credit card numbers
-
 + IP addresses \(IPv4 and IPv6\)
-
 + Drivers license IDs \(USA\)
-
 + National identification numbers \(USA\)
-
 + Birth dates
 
 As part of PII object classification, Macie also assigns each matching object a PII impact of high, moderate, and low using the following criteria:
-
 + High
-
   + >= 1 full name and credit card
-
   + >= 50 names or emails and any combination of other PII
-
 + Moderate
-
   + >= 5 names or emails and any combination of other PII
-
 + Low
-
   + 1\-5 names or emails and any combination of PII
-
   + Any quantity of PII attributes above \(without names or emails\)
 
 ### Support Vector Machine\-Based Classifier<a name="classify-objects-classifier"></a>
@@ -155,109 +141,57 @@ Another method that Macie uses to classify your S3 objects is a Support Vector M
 This data classification method is not surfaced in the Macie's Settings\. The following list of artifacts is Macie\-managed and cannot be edited, enabled, or disabled\.
 
 The SVM classifier in Macie is trained to detect the following content types:
-
 + E\-books
-
 + Email
-
 + Generic encryption keys
-
 + Financial
-
   + SEC regulatory forms
-
 + JSON
-
   + AWS CloudTrail logs
-
   + Jupyter notebooks
-
 + Application logs
-
   + Apache format
-
   + AWS S3 server logs
-
   + Linux syslog
-
 + Database
-
   + MongoDB backup
-
   + MySQLbackup
-
   + MySQL script
-
 + Source code
-
   + F\#
-
   + VimL
-
   + ActionScript
-
   + Assembly
-
   + Bash
-
   + Batchfile
-
   + C
-
   + Clojure
-
   + Cobol
-
   + CoffeeScript
-
   + CUDA
-
   + Erlang
-
   + Fortran
-
   + Go
-
   + Haskell
-
   + Java
-
   + JavaScript
-
   + LISP
-
   + Lua
-
   + Matlab
-
   + ObjectiveC
-
   + Perl
-
   + PHP
-
   + PowerShell
-
   + Processing
-
   + Python
-
   + R
-
   + Ruby
-
   + Scala
-
   + Swift
-
   + VHDL
-
 + Web languages
-
   + CSS
-
   + HTML
-
   + XML
 
 ## Object Risk Level<a name="compound-score"></a>

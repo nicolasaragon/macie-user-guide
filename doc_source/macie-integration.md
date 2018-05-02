@@ -2,7 +2,7 @@
 
 You can use the Macie console's **Integrations** tab to integrate member accounts with Macie and to integrate Amazon S3 with Macie for both your master account and member accounts\. For more information about the master and member accounts, see [Concepts and Terminology](macie-concepts.md)\.
 
-
+**Topics**
 + [Integrate Member Accounts with Macie](#macie-integration-member)
 + [Specify Data for Macie to Monitor](#macie-integration-services)
 + [Encrypted Objects](#macie-encrypted-objects)
@@ -23,9 +23,7 @@ You can skip this step if you're re\-adding an AWS account as a Macie member acc
    Create the IAM policies and roles that will grant this account the required permissions to be successfully integrated with Macie\. The most efficient method of creating these roles and policies is by launching the AWS CloudFormation stack templates found at the URLs listed below\. These roles only need to be created once for use in all regions\. For more information about AWS CloudFormation and CloudFormation stacks, see [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) and [Working with Stacks](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\. 
 **Important**  
 These CloudFormation stack templates for the member accounts differ from those used to enable the master accounts in [Setting Up Amazon Macie](macie-setting-up.md)\. Make sure to specify the master AWS account ID when running the stack templates below\.
-
    + US East \(Virginia\): [Macie CloudFormation template for a member account](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=MacieServiceRolesMembers&templateURL=https://s3.amazonaws.com/us-east-1.macie-redirection/cfntemplates/MacieServiceRolesMember.template)
-
    + US West \(Oregon\): [Macie CloudFormation template for a member account](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=MacieServiceRolesMember&templateURL=https://s3-us-west-2.amazonaws.com/us-west-2.macie-redirection/cfntemplates/MacieServiceRolesMember.template)
 
 1. Log in to AWS with the Macie master account, navigate to the Macie console, and then choose the **Integrations** tab\.
@@ -79,9 +77,6 @@ Note that it is possible for the **Total processed** value of an S3 bucket to be
 ## Encrypted Objects<a name="macie-encrypted-objects"></a>
 
 If objects stored in your Amazon S3 buckets are encrypted, Macie might not be able to read and classify those objects: 
-
 + If your Amazon S3 objects are encrypted using [Amazon S3\-managed encryption keys \(SSE\-S3\)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html), Macie can read and classify the objects using the roles created during the setup process\.
-
 + If your Amazon S3 objects are encrypted using [AWS KMS\-managed keys \(SSE\-KMS\)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html), Macie can read and classify the objects only if you add the AWSMacieServiceCustomerServiceRole IAM role as a [key user](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-users) for the KMS customer master key \(CMK\)\. If you don't add the role as a key user for the KMS CMK, Macie cannot read and classify the objects\. However, Macie still stores metadata on the object, including which KMS CMK was used to protect the object\.
-
 + If your Amazon S3 objects are encrypted using client\-side encryption, Macie cannot read and classify the objects, but still stores metadata on the object\.
