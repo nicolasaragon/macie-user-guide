@@ -105,18 +105,6 @@ This is a complete list of your public S3 objects grouped by the buckets in whic
 
 To navigate from this view to the **Research** tab, you can choose the looking glass icon next to any of the displayed buckets\. Your selection is automatically translated into a query that is displayed in the query parser in the **Research** tab\. 
 
-You can follow this sample procedure:<a name="d3"></a>
-
-1. In the Macie **Dashboard**, select the **S3 public objects by buckets** view\.
-
-1. For example, let's generate a list of S3 objects with low PII priority\. In the **S3 objects by PII priority** list, choose the looking glass icon next to the low PII priority\.
-
-   As a result, you are redirected to the **Research** tab with the following query automatically displayed in the query parser:
-
-   `pii_impact:"low" `
-
-   The results of this query are also displayed\. You can then modify the query result controls available on the **Research** tab and run the query again, and conduct in\-depth investigative research of the generated results\. For more information, see [Researching Through Macie\-Monitored Data](macie-research.md)\.
-
 ### S3 objects by ACL<a name="s3objectsacl"></a>
 
 This view provides the following lists:

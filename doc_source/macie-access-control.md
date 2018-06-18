@@ -2,6 +2,8 @@
 
 The master account users have access to the Macie console where they can configure Macie and use it to monitor and protect the resources in both master and member accounts\. \(For more information about master and member accounts, see [Concepts and Terminology](macie-concepts.md) and [Integrate Member Accounts and Amazon S3 with Amazon Macie](macie-integration.md)\)\. 
 
+## Grant Macie Administrator Access<a name="admin-access"></a>
+
 In order for the master account users to be able to use the Macie console, they must be granted the required permissions\. To ensure this, you can use the following policy document to create and attach an IAM policy to any user identity type that belongs to your master Macie account\. This policy grants master account users permissions to use the Macie console in its full capacity:
 
 ```
@@ -20,6 +22,32 @@ In order for the master account users to be able to use the Macie console, they 
     ]
 }
 ```
+
+## Grant Macie Read\-Only Access<a name="read-access"></a>
+
+In order for a user to view any data in the Macie console, they must be granted the required permissions\. To grant read\-only access, you can create a custom policy using the following policy document and attach it to a IAM user, group, or role\. This policy grants users permissions to only view information in the Macie console:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "macie:Get*",
+                "macie:List*",
+                "macie:Describe*"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+**Note**  
+Currently, there is no AWS managed policy that can be used to grant read\-only access to Macie\. 
 
 ## AWS Managed \(Predefined\) Policies for Macie<a name="managed-policies"></a>
 

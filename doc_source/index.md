@@ -30,3 +30,4 @@ Amazon's trademarks and trade dress may not be used in
 + [Access Control in Amazon Macie](macie-access-control.md)
 + [Disabling Amazon Macie and Deleting Collected Metadata](macie-disable.md)
 + [Monitoring Amazon Macie Alerts with Amazon CloudWatch Events](macie-cloudwatch.md)
++ [Document History for Amazon Macie](doc-history.md)
