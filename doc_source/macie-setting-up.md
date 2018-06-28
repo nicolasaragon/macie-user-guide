@@ -1,11 +1,5 @@
 # Setting Up Amazon Macie<a name="macie-setting-up"></a>
 
-**Topics**
-+ [Step 1 \- Enable Macie](#macie-setting-up-enable)
-+ [Step 2 \- Integrate Amazon S3 with Macie](#macie-integrates3)
-
-## Step 1 \- Enable Macie<a name="macie-setting-up-enable"></a>
-
 When you sign up for AWS, your AWS account is automatically signed up for all services in AWS, including Amazon Macie\. If you don't have an account, use the following procedure to create one\. 
 
 **To sign up for AWS**
@@ -18,6 +12,13 @@ This might be unavailable in your browser if you previously signed into the AWS 
 
    Part of the sign\-up procedure involves receiving a phone call and entering a PIN using the phone keypad\.
 
+**Topics**
++ [Step 1 \- Enable Macie](#macie-setting-up-enable)
++ [Step 2 \- Integrate Amazon S3 with Macie](#macie-integrates3)
++ [Using Service\-Linked Roles for Amazon Macie](using-service-linked-roles.md)
+
+## Step 1 \- Enable Macie<a name="macie-setting-up-enable"></a>
+
 When you launch the Macie console for the first time, choose **Get Started** and complete the following procedure to enable Macie\. 
 
 **Important**  
@@ -25,21 +26,20 @@ The AWS account that you use to enable Macie is automatically designated as your
 
 **To enable Amazon Macie**
 
-On the **Enable Amazon Macie** page, complete the following steps:
+1. The IAM identity \(user, role, group\) that you use to enable Macie must have the required permissions\. To grant the permissions required to enable Macie, attach the AmazonMacieFullAccess managed policy to this IAM user, group, or role\. For more information, see [AWS Managed \(Predefined\) Policies for Macie](macie-access-control.md#managed-policies)\. 
 
-1. Verify region preferences by reviewing the value in the drop\-down menu under the **Region** section\.
+1. Use the credentials of the IAM identity from Step 1 to sign in to the Macie console\. When you open the Macie console for the first time, choose **Get Started**\. 
+
+1. On the **Enable Amazon Macie** page, verify region preferences by reviewing the value in the drop\-down menu under the **Region** section\.
 **Note**  
-The region that you are currently signed in to is automatically selected\.
-
-1. **Required:** create the Identity Access Management \(IAM\) roles that provide Macie with access to your AWS account\. You can create these roles and the required policies by launching the AWS CloudFormation stack templates found at the URLs listed below\. These roles only need to be created once for use in all regions\. For more information about AWS CloudFormation and CloudFormation stacks, see [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) and [Working with Stacks](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\. 
-   + For US East \(Virginia\): [Macie CloudFormation template for a master account](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=MacieServiceRolesMaster&templateURL=https://s3.amazonaws.com/us-east-1.macie-redirection/cfntemplates/MacieServiceRolesMaster.template) 
-   + US West \(Oregon\): [Macie CloudFormation template for a master account](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=MacieServiceRolesMaster&templateURL=https://s3-us-west-2.amazonaws.com/us-west-2.macie-redirection/cfntemplates/MacieServiceRolesMaster.template)
-
-1. **Required**: make sure that AWS CloudTrail is enabled in your account\. If CloudTrail is not enabled, you must navigate to the AWS CloudTrail console and enable AWS CloudTrail\. For more information, see [Overview for Creating a Trail](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-and-update-a-trail.html)\.
-
-1. Grant Macie the required permissions to access your CloudTrail data by checking the checkbox in the **Permissions** section\.
+The region to which you are currently signed in is automatically selected\.
 
 1. Choose **Enable Macie**\.
+
+   Note the following about enabling Macie:
+   + Macie is assigned a service\-linked role called AWSServiceRoleForAmazonMacie\. This service\-linked role includes the permissions and trust policy that Macie requires to discover, classify, and protect sensitive data in AWS on your behalf and to generate alerts about potential security issues\. To view the details of AWSServiceRoleForAmazonMacie, on the **Enable Amazon Macie** page, choose **View service role permissions**\. For more information, see [Using Service\-Linked Roles for Amazon Macie](using-service-linked-roles.md)\. For more information about service\-linked roles, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html)\. 
+   + After you enable Macie, it immediately begins pulling and analyzing independent streams of data from AWS CloudTrail in order to generate alerts\. Because Macie only consumes this data for purposes of determining if there are potential security issues, Macie doesn't manage AWS CloudTrail for you or make its events and logs available to you\. If you have enabled AWS CloudTrail independent of Macie, you will continue to have the option to configure its settings through the AWS CloudTrail console or APIs\. For more information, see [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
+   + You can disable Macie at any time to stop it from processing and analyzing AWS CloudTrail events\. For more information, see [Disabling Amazon Macie and Deleting Collected Metadata](macie-disable.md)\.
 
 ## Step 2 \- Integrate Amazon S3 with Macie<a name="macie-integrates3"></a>
 

@@ -18,11 +18,11 @@ When you integrate member accounts with Macie you are enabling Macie to monitor 
 1. 
 **Important**  
 This is a required step if you're adding an AWS account as a Macie member account for the first time\.  
-You can skip this step if you're re\-adding an AWS account as a Macie member account after you've disabled and re\-enabled Macie\.
+You can skip this step if you're re\-adding an AWS account as a Macie member account after disassociating it from Macie\.
 
-   Create the IAM policies and roles that will grant this account the required permissions to be successfully integrated with Macie\. The most efficient method of creating these roles and policies is by launching the AWS CloudFormation stack templates found at the URLs listed below\. These roles only need to be created once for use in all regions\. For more information about AWS CloudFormation and CloudFormation stacks, see [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) and [Working with Stacks](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\. 
+   Create the IAM role called `AmazonMacieHandshakeRole` that grants this account the required permissions to be successfully integrated with Macie\. You can create this role by launching the AWS CloudFormation stack templates found at the URLs listed below\. This role only needs to be created once for use in all regions\. For more information about AWS CloudFormation and CloudFormation stacks, see [What is AWS CloudFormation?](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) and [Working with Stacks](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\. 
 **Important**  
-These CloudFormation stack templates for the member accounts differ from those used to enable the master accounts in [Setting Up Amazon Macie](macie-setting-up.md)\. Make sure to specify the master AWS account ID when running the stack templates below\.
+Make sure to specify the master AWS account ID when running the stack templates below\.
    + US East \(Virginia\): [Macie CloudFormation template for a member account](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=MacieServiceRolesMembers&templateURL=https://s3.amazonaws.com/us-east-1.macie-redirection/cfntemplates/MacieServiceRolesMember.template)
    + US West \(Oregon\): [Macie CloudFormation template for a member account](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=MacieServiceRolesMember&templateURL=https://s3-us-west-2.amazonaws.com/us-west-2.macie-redirection/cfntemplates/MacieServiceRolesMember.template)
 
@@ -33,7 +33,64 @@ These CloudFormation stack templates for the member accounts differ from those u
 1. In the **Add member AWS account\(s\)** pop up window, enter one or more AWS account IDs\. Separate multiple account numbers with commas\. Choose **Add accounts**\.
 
 **Important**  
-If you disable Macie, the service will no longer have access to the resources in your master or member accounts\. If you decide to re\-enable Macie, you will have to add member accounts to it again using the steps above\. However, the IAM policies and roles that you created for these member accounts in Step 2 above will remain intact after you disable Macie\.
+Once Macie is enabled in this member account, Macie is assigned a service\-linked role called `AWSServiceRoleForAmazonMacie`\. This service\-linked role includes the permissions and the trust policy that Macie requires to discover, classify, and protect sensitive data in AWS in this account and to generate alerts about potential security issues\. The following are the details of `AWSServiceRoleForAmazonMacie`:  
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Resource": "*",
+            "Action": [
+                "cloudtrail:DescribeTrails",
+                "cloudtrail:GetEventSelectors",
+                "cloudtrail:GetTrailStatus",
+                "cloudtrail:ListTags",
+                "cloudtrail:LookupEvents",
+                "iam:ListAccountAliases",
+                "s3:Get*",
+                "s3:List*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": "arn:aws:cloudtrail:*:*:trail/AWSMacieTrail-DO-NOT-EDIT",
+            "Action": [
+                "cloudtrail:CreateTrail",
+                "cloudtrail:StartLogging",
+                "cloudtrail:StopLogging",
+                "cloudtrail:UpdateTrail",
+                "cloudtrail:DeleteTrail",
+                "cloudtrail:PutEventSelectors"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::awsmacie-*",
+                "arn:aws:s3:::awsmacietrail-*",
+                "arn:aws:s3:::*-awsmacietrail-*"
+            ],
+            "Action": [
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:DeleteBucketPolicy",
+                "s3:DeleteBucketWebsite",
+                "s3:DeleteObject",
+                "s3:DeleteObjectTagging",
+                "s3:DeleteObjectVersion",
+                "s3:DeleteObjectVersionTagging",
+                "s3:DeleteReplicationConfiguration",
+                "s3:PutBucketPolicy"
+            ]
+        }
+    ]
+}
+```
+ For more information, see [Using Service\-Linked Roles for Amazon Macie](using-service-linked-roles.md)\. For more information about service\-linked roles, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html)\. 
+
+If you disable Macie, the service no longer has access to the resources in your member account\. However, the `AmazonMacieHandshakeRole` IAM role that you created for this member account in Step 2 above and the `AWSServiceRoleForAmazonMacie` service\-linked role that was automatically created for this member account when it was integrated with Macie remain intact after you disable Macie\. These existing roles are used again if you decide to re\-enable Macie for this member account\. To re\-enable Macie for a member account, you must use the steps above to integrate this member account with Macie\.
 
 ## Specify Data for Macie to Monitor<a name="macie-integration-services"></a>
 
@@ -78,5 +135,5 @@ Note that it is possible for the **Total processed** value of an S3 bucket to be
 
 If objects stored in your Amazon S3 buckets are encrypted, Macie might not be able to read and classify those objects: 
 + If your Amazon S3 objects are encrypted using [Amazon S3\-managed encryption keys \(SSE\-S3\)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html), Macie can read and classify the objects using the roles created during the setup process\.
-+ If your Amazon S3 objects are encrypted using [AWS KMS\-managed keys \(SSE\-KMS\)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html), Macie can read and classify the objects only if you add the AWSMacieServiceCustomerServiceRole IAM role as a [key user](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-users) for the KMS customer master key \(CMK\)\. If you don't add the role as a key user for the KMS CMK, Macie cannot read and classify the objects\. However, Macie still stores metadata on the object, including which KMS CMK was used to protect the object\.
++ If your Amazon S3 objects are encrypted using [AWS KMS\-managed keys \(SSE\-KMS\)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html), Macie can read and classify the objects only if you add the `AWSMacieServiceCustomerServiceRole` IAM role or the `AWSServiceRoleForAmazonMacie` service\-linked role as a [key user](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-users) for the KMS customer master key \(CMK\)\. If you don't add either of these roles as a key user for the KMS CMK, Macie cannot read and classify the objects\. However, Macie still stores metadata on the object, including which KMS CMK was used to protect the object\.
 + If your Amazon S3 objects are encrypted using client\-side encryption, Macie cannot read and classify the objects, but still stores metadata on the object\.

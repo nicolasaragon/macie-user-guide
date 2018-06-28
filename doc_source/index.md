@@ -17,6 +17,7 @@ Amazon's trademarks and trade dress may not be used in
 + [What Is Amazon Macie?](what-is-macie.md)
 + [Concepts and Terminology](macie-concepts.md)
 + [Setting Up Amazon Macie](macie-setting-up.md)
+   + [Using Service-Linked Roles for Amazon Macie](using-service-linked-roles.md)
 + [Integrate Member Accounts and Amazon S3 with Amazon Macie](macie-integration.md)
 + [Classifying Data with Amazon Macie](macie-classify-data.md)
 + [Protecting Data with Amazon Macie](macie-protect-data.md)

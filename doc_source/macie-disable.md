@@ -2,6 +2,9 @@
 
 You can use the Macie general settings page in the Macie console to disable Macie\.
 
+**Important**  
+Only the master Macie account can disable Macie\. In order for Macie to be disabled in a member account, the master account must disassociate this member account from Macie\.
+
 If you disable Macie, it will no longer have access to the resources in the master account and all member accounts\. You must add member accounts again if you decide to re\-enable Macie\.
 
  If you disable Macie, it stops processing the resources in the master account and all member accounts\. Once Macie is disabled, the metadata that Macie collected while monitoring the data in your master and member accounts is deleted\. Within 90 days from disabling Macie, all of this metadata is expired from the Macie system backups\. 
