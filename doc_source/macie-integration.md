@@ -127,7 +127,8 @@ The **Total processed** value for each bucket is calculated as follows:
 If an object's size is less than 1KB, 1KB is added to the **Total processed** value\. Otherwise, the object's actual size is added to the **Total processed** value\.
 If the object's size is greater than 20MB, 20MB is added to the **Total processed** value\. Otherwise, the object's actual size is added to the **Total processed** value\.
 For object in Amazon Glacier vaults, 0 is added to the **Total processed** value\.
-Note that it is possible for the **Total processed** value of an S3 bucket to be higher than the **Total size** value\.
+Note that it is possible for the **Total processed** value of an S3 bucket to be higher than the **Total size** value\.  
+Note that the one\-time classification cost estimates are only calculated per S3 buckets and NOT per S3 bucket prefixes\. If you select an S3 bucket prefix, the cost estimate for the entire S3 bucket is included in the total cost estimate summary for the selected resources\. If you select multiple prefixes of the same S3 bucket, the cost estimate for this entire S3 bucket is included only once in the total cost estimate summary for the selected resources\.
 
 1. When you've finished your selections, choose **Review and Save**\. And when you've finished reviewing your selections, choose **Save**\.
 
