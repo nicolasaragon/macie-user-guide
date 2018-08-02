@@ -94,43 +94,50 @@ If you disable Macie, the service no longer has access to the resources in your 
 
 ## Specify Data for Macie to Monitor<a name="macie-integration-services"></a>
 
-In order for Macie to start monitoring and classifying your data, you must specify what data you want Macie to monitor and classify\. You can use the **Integrations**/**Services** tab to specify the S3 buckets that contain the data that you want Macie to monitor\. 
+You can use the **S3 Resources** tab on the **Integrations** page to specify the S3 buckets and prefixes that contain the data that you want Macie to monitor\. 
 
 **Important**  
-Currently, Macie can only monitor objects stored in Amazon S3 buckets\.
+Currently, Macie can only monitor objects stored in Amazon S3\.
 
 **Important**  
 Macie has a default limit on the amount of data that it can classify in an AWS account\. Once this data limit is reached, Macie stops classifying the data in this AWS account\. The default data classification limit is 3TB\. You can contact customer support and request an increase to the default limit\. 
 
-You can integrate S3 with Macie \(in other words, specifying one or more S3 buckets for Macie to monitor\) during the initial Macie setup\. For more information and instructions, see [Setting Up Amazon Macie](macie-setting-up.md)\. You can also use the the following procedure to integrate S3 with Macie at any time after you've enabled Macie\.
+You can also specify S3 buckets and prefixes for Macie to monitor during the initial Macie setup\. For more information and instructions, see [Setting Up Amazon Macie](macie-setting-up.md)\.
 
 1. Log in to AWS with the credentials of the AWS account that is serving as your Macie master account\.
 
-1. In the Macie console's **Integrations** tab, choose the **Services** tab\. 
+1. In the Macie console's **Integrations** tab, choose the **S3 Resources** tab\. 
 
-1. In the **Services** tab, select the account id \(master or member\) in the **Select an account** drop\-down\. The **Amazon S3** tile is then displayed\.
+1. In the **S3 Resources** tab, select the account id \(master or member\) in the **Select an account** drop\-down and then choose **Select**\.
 
-1. Choose the **Details** button in the **Amazon S3** tile\.
-
-1. On the **Selected S3 buckets and prefixes** page, choose the edit icon, and then select either the full buckets \(recommended\) or bucket/prefix combinations for Macie to monitor\. You can select up to 250 S3 buckets and prefixes\. 
+1. On the **Integrate S3 resources with Macie** page, choose either **Edit** to edit the buckets/prefixes that are already integrated with Macie or **Add** to select new buckets/prefixes to integrate with Macie\. 
 **Note**  
-You can only select S3 buckets in your current AWS region\.
+You can select up to 250 S3 buckets and prefixes\. You can only select S3 buckets in your current AWS region\.
+
+1. Next, you must configure the methods for classifying your new and existing S3 objects\. The continuous classification method is applied to new objects that are added or updated after your buckets selection is complete\. Continuous classification of new data enables S3 object\-level logging for all selected buckets and prefixes\. The one\-time classification method is applied only once to all of the existing objects in the selected S3 buckets/prefixes\.
 **Important**  
-When you specify an S3 bucket, by default, Macie only classifies objects that are added to the bucket after your bucket selection is complete\. However you can instruct Macie to classify all existing objects in the specified S3 bucket by checking the **Classify all** checkbox\.   
-If you decide to **Classify all** S3 objects in a bucket, make sure to note the following values:  
-**Total size** \- total size of the data within this bucket, which is the sum of the sizes of all the objects in the bucket\. This value is displayed in the **Total size** column on the **Select S3 buckets for Macie to monitor** page\. 
-**Total processed** \- total size of the data from the bucket that Macie will actually classify\. This value is displayed in the **Total processed** column on the **Select S3 buckets for Macie to monitor** page\. 
-**Total cost estimate** \- the total content classification cost estimate for each S3 bucket\. This value is displayed in the **Total cost estimate** column on the **Select S3 buckets for Macie to monitor** page\. 
-These values are greyed out if **Classify all** checkbox is not checked\. These values are calculated based on the snapshot of the contents of your S3 buckets taken within the last 48 hours\.  
-The **Total cost estimate** for each bucket is based on the **Total processed** value for that bucket and the general Macie pricing of $5 per GB processed by the content classification engine\. The total cost estimates are provided only for S3 buckets, not for prefixes\. For more information, see [Amazon Macie Pricing](https://aws.amazon.com/macie/pricing/)\.   
-The **Total processed** value for each bucket is calculated as follows:  
-If an object's size is less than 1KB, 1KB is added to the **Total processed** value\. Otherwise, the object's actual size is added to the **Total processed** value\.
-If the object's size is greater than 20MB, 20MB is added to the **Total processed** value\. Otherwise, the object's actual size is added to the **Total processed** value\.
-For object in Amazon Glacier vaults, 0 is added to the **Total processed** value\.
-Note that it is possible for the **Total processed** value of an S3 bucket to be higher than the **Total size** value\.  
+In the current Macie release, you can only select **Full** as the setting for the continuous classification \(classifying new objects\) and you can select **Full** or **None** as the settings for the one\-time classification method \(classifying all existing objects\)\.
+**Important**  
+If you enable one\-time classification, note the following values that are displayed for each selected bucket/prefix:  
+Total objects \- total number of objects in this S3 bucket/prefix\.
+Processed estimate \- total size of the data from this bucket that Macie will actually classify\. 
+Cost estimate \- the cost estimate for classifying objects within this bucket\.
+Macie also provides you with several totals for all of the selected buckets:  
+**Total size** \- total size of the data within all of the selected buckets\.
+**Total number of objects** \- total number of objects in all of the selected S3 buckets\.
+**Processed estimate** \- total size of the data from all of the selected buckets that Macie will actually classify\. 
+**Total cost estimate** \- the total content classification cost estimate for all selected buckets\.
+The **Total cost estimate** for each bucket is based on the **Processed estimate** value for that bucket and the general Macie pricing of $5 per GB processed by the content classification engine\. The total cost estimates are provided only for S3 buckets, not for prefixes\. For more information, see [Amazon Macie Pricing](https://aws.amazon.com/macie/pricing/)\.   
+The **Processed estimate** value for each bucket is calculated as follows:  
+If an object's size is less than 1KB, 1KB is added to the **Processed estimate** value\. Otherwise, the object's actual size is added to the **Processed estimate** value\.
+If the object's size is greater than 20MB, 20MB is added to the ** Processed estimate** value\. Otherwise, the object's actual size is added to the **Processed estimate** value\.
+For object in Amazon Glacier vaults, 0 is added to the ** Processed estimate** value\.
+Note that it is possible for the **Processed estimate** value of an S3 bucket to be higher than the **Total size** value\.  
 Note that the one\-time classification cost estimates are only calculated per S3 buckets and NOT per S3 bucket prefixes\. If you select an S3 bucket prefix, the cost estimate for the entire S3 bucket is included in the total cost estimate summary for the selected resources\. If you select multiple prefixes of the same S3 bucket, the cost estimate for this entire S3 bucket is included only once in the total cost estimate summary for the selected resources\.
 
-1. When you've finished your selections, choose **Review and Save**\. And when you've finished reviewing your selections, choose **Save**\.
+1. When you've finished your selections, choose **Review**\.
+
+1. When you've finished reviewing your selections, choose **Start classification**\.
 
 ## Encrypted Objects<a name="macie-encrypted-objects"></a>
 
