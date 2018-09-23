@@ -19,7 +19,7 @@ The role permissions policy allows Macie to complete the following actions on th
 + Action: `iam:CreateServiceLinkedRole` 
 + Resources: `arn:aws:iam::*:role/aws-service-role/macie.amazonaws.com/AWSServiceRoleForAmazonMacie`
 
-You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For the `AWSServiceRoleForAmazonMacie` service\-linked role to be successfully created, the IAM identity that you use Macie with must have the required permissions\. To grant the required permissions, attach the `AmazonMacieFullAccess` managed policy to this IAM user, group, or role\. For more information, see [Service\-Linked Role Permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
+The IAM entity \(such as a user, group, or role\) you use to create the `AWSServiceRoleForAmazonMacie` service\-linked role will need privileges. To grant the required privileges for creating a service\-linked role, see [Service\-Linked Role Permissions](http://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 
 ## Creating a Service\-Linked Role for Macie<a name="create-slr"></a>
 + **For the master Macie account**, the `AWSServiceRoleForAmazonMacie` service\-linked role is automatically created when you enable Macie for the first time or enable Macie in a supported region where you previously didn't have it enabled\. You can also create the `AWSServiceRoleForAmazonMacie` service\-linked role manually for the master account using the IAM console, the IAM CLI, or the IAM API\. 
